@@ -1,0 +1,14 @@
+
+class Solution {
+    fun reverse(x: Int): Int {
+        var num = x
+        var rev = 0L
+        while(num!=0){
+            val rem = num%10
+            rev = rev*10 + rem
+            num /=10
+            if(rev> Integer.MAX_VALUE || rev<Integer.MIN_VALUE) return 0
+        }    
+        return rev.toInt()    
+    }
+}
