@@ -1,0 +1,35 @@
+2. Add Two Numbers
+
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+class Solution {
+    fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
+        var ln1 = l1
+        var ln2 = l2
+        var rem = 0
+    
+        val dummyHead = ListNode(0)
+        var current = dummyHead
+    
+        while (ln1 != null || ln2 != null || rem != 0) {
+            val sum = (ln1?.`val` ?: 0) + (ln2?.`val` ?: 0) + rem
+            rem = sum / 10
+            val digit = sum % 10
+    
+            current.next = ListNode(digit)
+            current = current.next!!
+    
+            ln1 = ln1?.next
+            ln2 = ln2?.next
+        }
+    
+        return dummyHead.next
+    }
+}
