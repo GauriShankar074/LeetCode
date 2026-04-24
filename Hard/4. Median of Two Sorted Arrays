@@ -1,0 +1,35 @@
+4. Median of Two Sorted Arrays
+
+class Solution {
+    fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
+       val m = nums1.size
+        val n = nums2.size
+        val totalSize = m + n
+        val midIndex = totalSize / 2
+        
+        var i = 0
+        var j = 0
+        var prev = 0
+        var curr = 0
+
+        for (k in 0..midIndex) {
+            prev = curr
+            when {
+                i < m && (j >= n || nums1[i] <= nums2[j]) -> {
+                    curr = nums1[i]
+                    i++
+                }
+                else -> {
+                    curr = nums2[j]
+                    j++
+                }
+            }
+        }
+
+        return if (totalSize % 2 == 0) {
+            (prev + curr) / 2.0  // Average of two middle elements
+        } else {
+            curr.toDouble()       // Single middle element
+        }
+    }
+}
